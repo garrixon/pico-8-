@@ -149,7 +149,7 @@ function newplayer(_x, _y, _w, _h)
     end
    end  
    if btn(❎) and self.b_timer == 0 and running then
-    local angle = atan2(stat(32) - self.x, stat(33) - self.y)
+    local angle = atan2(mousex() - self.x, mousey() - self.y)
     newbullet(self.mx + 4, self.my + 4, 2, 2*cos(angle), 2*sin(angle), 9, 0)
     self.b_timer = self.b_max
     sfx(1)
@@ -160,7 +160,7 @@ function newplayer(_x, _y, _w, _h)
   end,
   draw = function(self)
    spr(self.sprite, self.x, self.y,1,1,self.x>stat(32))
-   spr(2, stat(32), stat(33))
+   spr(2, mousex(), mousey())
   end
  
  
@@ -378,6 +378,40 @@ function mapgen(_x, _y)
   end 
  end
 
+
+
+end
+
+
+function mousex()
+
+ local x
+ if stat(32) > 120 then
+  x = 120
+ elseif stat(32) < 8 then
+  x = 8
+ else 
+  x = stat(32)
+ end
+  
+ return x
+
+
+end
+
+
+function mousey()
+
+ local y
+ if stat(33) > 120 then
+  y = 120
+ elseif stat(33) < 8 then
+  y = 8
+ else 
+  y = stat(33)
+ end
+  
+ return y
 
 
 end
